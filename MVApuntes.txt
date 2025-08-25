@@ -1,0 +1,23 @@
+/* 
+    qt, imgui
+    model view open gl 
+    al humanoide añadirle iluminación
+
+    OpenGL tiene dos matrices principales ^^ 
+       -  GL_MODELVIEW
+       -  GL_PROJECTION
+    transformar y posicionar en un ambiente 3D
+
+    - ModelView: se trabaja con dos tipos de transformaciones
+        -Model : escalar, posicionar o rotar
+        -View : conf de la cámara
+    
+    [tenemos que cuidar el orden de las transformaciones]
+
+    - glProjection : como se proyecta la escena en la pantalla
+                just con la proyección
+                Perspective u ortogonal
+    - glTranslate
+    - glRotate
+    - glLoadIdentity, like 'reset' que se vuelva a cargar la escena cuando se necesite, reemplaza la matriz actual con la identidad
+ */

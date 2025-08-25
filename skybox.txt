@@ -1,0 +1,42 @@
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+// Asumimos que hay un arreglo de nombres de archivo de texturas para las 6 caras del skybox
+const char* TEXTURAS[6] = {
+    "skybox/front.jpg",
+    "skybox/back.jpg",
+    "skybox/left.jpg",
+    "skybox/right.jpg"4,
+    "skybox/top.jpg",
+    "skybox/bottom.jpg"
+};
+
+GLuint textureID[6];  // Array para almacenar las texturas del skybox
+
+void cargarTexturasSkybox() {
+    for (int i = 0; i < 6; i++) {
+        int width, height, nrChannels;
+        unsigned char *data = stbi_load(TEXTURAS[i], &width, &height, &nrChannels, 0);
+
+        if (data) {
+            glGenTextures(1, &textureID[i]);
+            glBindTexture(GL_TEXTURE_2D, textureID[i]);
+
+            // Usamos GL_RGB o GL_RGBA dependiendo de las imágenes
+            glTexImage2D(GL_TEXTURE_2D, 0, (nrChannels == 4 ? GL_RGBA : GL_RGB), width, height, 0, 
+                         (nrChannels == 4 ? GL_RGBA : GL_RGB), GL_UNSIGNED_BYTE, data);
+
+            // Configuraciones típicas de texturas
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); // Para no repetir las texturas
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        } else {
+            printf("Error al cargar la textura: %s\n", TEXTURAS[i]);
+        }
+
+        stbi_image_free(data);
+    }
+}
+
+

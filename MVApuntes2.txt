@@ -1,0 +1,27 @@
+¿Por qué estoy usando ModelView?
+
+OpenGL tiene dos matrices principales:
+ GL_MODELVIEW
+ GL_PROJECTION
+
+ Me permiten transformaciones y posicionamiento
+ en ambientes 3d.
+
+ MV:
+  se trabaja con dos tipos de transformaciones
+  	-Model: Escalar, posicionar y rotar
+  	-View: Configurar la cámara
+
+Tenemos que cuidar el orden de las transformaciones
+
+
+
+
+
+
+
+
+
+
+
+
